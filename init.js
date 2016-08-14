@@ -24,7 +24,7 @@
             // When editor switches to a new editor instance...
             codiad.editor.addInstance = (function(_super) {
                 return function (session, where) {
-                    _super.apply(this, [session, where]);
+                    to_return = _super.apply(this, [session, where]);
 
                     // ...And update mouse handler object:
                     codiad.editor.activeInstance._defaultHandlers.dblclick = (function(_super) {
@@ -46,6 +46,7 @@
                             }
                         }
                     })(codiad.editor.activeInstance._defaultHandlers.dblclick)
+                    return to_return;
                 };
             })(codiad.editor.addInstance);
         }
